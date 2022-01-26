@@ -7,7 +7,9 @@ import './screens/main_screen.dart';
 
 void main() {
   BlocOverrides.runZoned(() => {
-  runApp(MyApp())
+  runApp(
+    MultiBlocProvider(providers: [BlocProvider<TodoBloc>(create: (context)=>TodoBloc(),)], child: MyApp())
+  )
   },blocObserver: MainBlocObserver());
 }
 

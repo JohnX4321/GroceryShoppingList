@@ -23,8 +23,8 @@ class TodoLoading extends TodoState {
 }
 
 class TodoLoaded extends TodoState {
-  final Map<String,List<GroceryModel>> todos={};
-  TodoLoaded([todos]): super([todos]);
+  Map<String,List<GroceryModel>?> todos={};
+  TodoLoaded([this.todos=const {}]): super([todos]);
 
   @override
   String toString() {

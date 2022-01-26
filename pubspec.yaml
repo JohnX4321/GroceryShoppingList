@@ -37,7 +37,7 @@ dependencies:
   bloc: ^8.0.2
   equatable: ^2.0.3
   flutter_bloc: ^8.0.1
-  uuid: ^2.0.2
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:

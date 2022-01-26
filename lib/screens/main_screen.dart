@@ -14,24 +14,33 @@ class MainScreen extends StatelessWidget {
     _todoBloc.add(LoadTodo());
 
     return Scaffold(
-      appBar: AppBar(title: Text("Grocery List"),),
+      appBar: AppBar(title: const Text("Grocery List"),),
       body: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            Text("Incomplete",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+            const Text("Incomplete",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
             BlocBuilder(bloc: _todoBloc,builder: (BuildContext context, TodoState state) {
               if (state is TodoLoaded) {
-                List<GroceryModel> upcomingTodos = state.todos["upcoming"]!;
+                List<GroceryModel>? upcomingTodos = state.todos["upcoming"];
+                print(state);
+                if(upcomingTodos==null||upcomingTodos.isEmpty) {
+                  return Container(height: 200,);
+                }
                 return Column(
                   children: upcomingTodos.map((m) => GroceryCard(m)).toList(),
                 );
-              } else return Container();
+              } else {
+                return Container();
+              }
             }),
-            Padding(padding: EdgeInsets.only(top: 40.0),child: Text("Completed",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),textAlign: TextAlign.center,),),
+            const Padding(padding: EdgeInsets.only(top: 40.0),child: Text("Completed",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),textAlign: TextAlign.center,),),
             BlocBuilder(bloc: _todoBloc,builder: (BuildContext context, TodoState state) {
               if (state is TodoLoaded) {
-                List<GroceryModel> completedTodos = state.todos["completed"]!;
+                List<GroceryModel>? completedTodos = state.todos["completed"];
+                if (completedTodos==null||completedTodos.isEmpty) {
+                  return Container();
+                }
                 return Column(
                   children: completedTodos.map((e) => GroceryCard(e)).toList(),
                 );
@@ -45,7 +54,7 @@ class MainScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>showDialog(context: context, builder: (_)=>GroceryDialog()),
         tooltip: "Add",
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
 

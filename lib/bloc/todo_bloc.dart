@@ -11,6 +11,7 @@ class TodoBloc extends Bloc<TodoEvent,TodoState> {
       var todoState=state as TodoLoaded;
       var todoMap=todoState.todos;
       var updatedUpcoming =[...?todoMap["upcoming"],event.groceryModel];
+      print(updatedUpcoming);
       emit(TodoLoaded({"upcoming": updatedUpcoming,"completed": todoMap["completed"]}));
     });
     on<CompleteTodo>((event,emit) {

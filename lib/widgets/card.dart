@@ -21,7 +21,7 @@ class GroceryCard extends StatelessWidget {
         children: [
           ListTile(
             leading: Icon(completed?Icons.check_circle:Icons.assignment,),
-            title: Text(todo.task,style: TextStyle(decoration: completed?TextDecoration.lineThrough:null),),
+            title: Text(todo.task,style: TextStyle(decoration: null),),
             subtitle: const Text(""),
           ),
           completed?Container():
@@ -34,7 +34,7 @@ class GroceryCard extends StatelessWidget {
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Text("Yet To Implement")
                             ],
                           ),
@@ -42,7 +42,15 @@ class GroceryCard extends StatelessWidget {
                       );
                     });
                   }, child: const Text("View"),),
-                  TextButton(onPressed: ()=>_todoBloc.add(CompleteTodo(todo)), child: Text("Completed"))
+                  if(!todo.completed)
+                    TextButton(
+                        onPressed: () {
+                          todo.completed=true;
+                          _todoBloc.add(CompleteTodo(todo));
+                        },
+                        child: const Text("Completed"))
+                  else
+                    ElevatedButton(onPressed: ()=>{}, child: const Icon(Icons.delete)),
                 ],
               ))
         ],

@@ -24,7 +24,9 @@ class LoadTodo extends TodoEvent {
 
 class AddTodo extends TodoEvent {
   final GroceryModel groceryModel;
-  AddTodo(this.groceryModel): super([groceryModel]);
+  AddTodo(this.groceryModel): super([groceryModel]) {
+    print(groceryModel.toString());
+  }
 
   @override
   String toString() {
@@ -43,4 +45,14 @@ class CompleteTodo extends TodoEvent {
     return "CompleteTodo";
   }
 
+}
+
+class DeleteTodo extends TodoEvent {
+  final GroceryModel todo;
+  DeleteTodo(this.todo): super([todo]);
+
+  @override
+  String toString() {
+    return "DeleteTodo";
+  }
 }
