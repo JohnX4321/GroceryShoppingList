@@ -33,6 +33,7 @@ class ImageDetailScreen extends StatelessWidget {
             tag: heroTag,
             child: CachedNetworkImage(
               imageUrl: imageUrl,
+              httpHeaders: const {'User-Agent': 'Mozilla/5.0 GroceryApp/2.0.0'},
               fit: BoxFit.contain,
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(color: Colors.white),

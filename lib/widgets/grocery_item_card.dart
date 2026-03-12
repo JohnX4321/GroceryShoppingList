@@ -41,6 +41,7 @@ class GroceryItemCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
                 imageUrl: item.imageUrl,
+                httpHeaders: const {'User-Agent': 'Mozilla/5.0 GroceryApp/2.0.0'},
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,
